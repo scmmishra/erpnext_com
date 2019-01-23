@@ -284,20 +284,21 @@ setup_signup = function(page) {
 	}
 
 	function check_if_available(subdomain, callback) {
-		setTimeout(function() {
-			frappe.call({
-				method: 'erpnext_com.api.check_subdomain_availability',
-				args: { subdomain: subdomain },
-				type: 'POST',
-				callback: function(r) {
-					if(!r.message) {
-						callback(1);
-					} else {
-						callback(0);
-					}
-				},
-			});
-		}, 2000);
+		callback(1)
+		// setTimeout(function() {
+		// 	frappe.call({
+		// 		method: 'erpnext_com.api.check_subdomain_availability',
+		// 		args: { subdomain: subdomain },
+		// 		type: 'POST',
+		// 		callback: function(r) {
+		// 			if(!r.message) {
+		// 				callback(1);
+		// 			} else {
+		// 				callback(0);
+		// 			}
+		// 		},
+		// 	});
+		// }, 2000);
 	}
 
 	var query_params = frappe.utils.get_query_params();
@@ -348,7 +349,6 @@ setup_signup = function(page) {
 		window.clear_timeout();
 		window.timout_password_strength = setTimeout(test_password_strength, 200);
 	});
-
 	function test_password_strength(){
 		window.timout_password_strength = null;
 		return frappe.call({
