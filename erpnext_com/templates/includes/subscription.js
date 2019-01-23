@@ -348,6 +348,7 @@ setup_signup = function(page) {
 		window.clear_timeout();
 		window.timout_password_strength = setTimeout(test_password_strength, 200);
 	});
+	
 	function test_password_strength(){
 		window.timout_password_strength = null;
 		return frappe.call({
