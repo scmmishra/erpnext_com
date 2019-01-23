@@ -17,7 +17,15 @@ frappe.ready(function() {
 			|| !$page.find('select[name="industry_type"]').val()
 			|| !$page.find('input[name="passphrase"]').val() ) {
 
-			frappe.msgprint("All fields are necessary. Please try again.");
+			if($page.find('input[name="email"]').parent().hasClass('invalid')) {
+				frappe.msgprint("Please enter a valid email address.");
+			}
+			else if($page.find('input[name="passphrase"]').parent().hasClass('invalid')) {
+				frappe.msgprint("The password you entered is not strong enough. Please enter a valid password.");
+			}
+			else {
+				frappe.msgprint("All fields are necessary. Please try again.");
+			}
 			return false;
 		} else {
 			show_subscription_form();
